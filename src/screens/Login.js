@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Input from '../components/Input';
-const Login = () => {
+const Login = ({ navigation }) => {
   return (
     <ScrollView vertical={true}>
       <View style={styles.container}>
@@ -37,7 +37,9 @@ const Login = () => {
             secureTextEntry
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Home')}
+          style={styles.button}>
           <Text style={styles.textBtn}>Login </Text>
         </TouchableOpacity>
       </View>
