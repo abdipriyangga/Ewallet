@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Console, Invest, More, Phone, Thunder, Tv } from '../assets';
+import { Console, Invest, More, Phone, Promo, Thunder, Tv } from '../assets';
 const Home = () => {
   return (
     <>
@@ -19,167 +19,192 @@ const Home = () => {
           <Icon name="notifications" size={25} style={styles.icon} />
         </TouchableOpacity>
       </View>
-      <View style={styles.wrapBalance}>
-        <Text style={styles.textBalance}>ODO Cash</Text>
-        <View style={styles.balance}>
-          <Text style={{ fontSize: 12, color: '#fff', fontWeight: '500' }}>
-            Rp
-          </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              color: '#fff',
-              fontWeight: '700',
-              marginLeft: 3,
-            }}>
-            50000
-          </Text>
-        </View>
-        <View style={styles.balance}>
-          <Text style={styles.textBalance}>ODO Points</Text>
-          <Text
-            style={{
-              color: '#bf9000',
-              fontWeight: '900',
-              marginTop: 8,
-              marginLeft: 4,
-            }}>
-            100
-          </Text>
-        </View>
-      </View>
-      {/* Fitur */}
-      <View style={styles.boxFitur}>
-        <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
-          <View style={styles.circle}>
-            <Icon size={25} name="add-outline" style={{ color: '#6604c2' }} />
-          </View>
-          <Text style={{ fontSize: 14, fontWeight: '500', color: '#6604c2' }}>
-            Top Up
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
-          <View style={styles.circle}>
-            <Icon
-              size={25}
-              name="arrow-up-outline"
-              style={{ color: '#6604c2' }}
-            />
-          </View>
-          <Text style={{ fontSize: 14, fontWeight: '500', color: '#6604c2' }}>
-            Transfer
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
-          <View style={styles.circle}>
-            <Icon size={25} name="timer-outline" style={{ color: '#6604c2' }} />
-          </View>
-          <Text style={{ fontSize: 14, fontWeight: '500', color: '#6604c2' }}>
-            History
-          </Text>
-        </TouchableOpacity>
-      </View>
-      {/* Buying */}
-      <View style={styles.boxBuying}>
-        <View style={styles.row}>
-          <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
-            <View>
-              <Image source={Thunder} style={{ width: 30, height: 30 }} />
-            </View>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
-              PLN
+      <ScrollView>
+        <View style={styles.wrapBalance}>
+          <Text style={styles.textBalance}>ODO Cash</Text>
+          <View style={styles.balance}>
+            <Text style={{ fontSize: 12, color: '#fff', fontWeight: '500' }}>
+              Rp
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
-            <View>
-              <Image source={Phone} style={{ width: 30, height: 30 }} />
-            </View>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
-              Pulsa
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
-            <View>
-              <Image
-                source={Console}
-                style={{ width: 30, height: 30, marginLeft: 8 }}
-              />
-            </View>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
-              Games
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
-            <View>
-              <Image
-                source={Invest}
-                style={{ width: 30, height: 30, marginLeft: 8 }}
-              />
-            </View>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
-              Invest
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.row}>
-          <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
-            <View>
-              <Icon
-                name="newspaper"
-                size={30}
-                style={{ width: 30, height: 30, color: '#cc0000' }}
-              />
-            </View>
             <Text
               style={{
-                fontSize: 14,
-                fontWeight: '500',
-                color: '#222',
+                fontSize: 16,
+                color: '#fff',
+                fontWeight: '700',
+                marginLeft: 3,
               }}>
-              Kredit
+              50000
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 10, marginTop: 3 }}>
-            <View>
-              <Image
-                source={Tv}
-                style={{ width: 30, height: 30, marginLeft: 8 }}
-              />
+          </View>
+          <View style={styles.balance}>
+            <Text style={styles.textBalance}>ODO Points</Text>
+            <Text
+              style={{
+                color: '#bf9000',
+                fontWeight: '900',
+                marginTop: 8,
+                marginLeft: 4,
+              }}>
+              100
+            </Text>
+          </View>
+        </View>
+        {/* Fitur */}
+        <View style={styles.boxFitur}>
+          <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
+            <View style={styles.circle}>
+              <Icon size={25} name="add-outline" style={{ color: '#6604c2' }} />
             </View>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
-              Internet
+            <Text style={{ fontSize: 14, fontWeight: '500', color: '#6604c2' }}>
+              Top Up
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 28, marginTop: 3 }}>
-            <View>
+          <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
+            <View style={styles.circle}>
               <Icon
-                name="umbrella"
-                size={30}
-                style={{
-                  width: 30,
-                  height: 30,
-                  marginLeft: 10,
-                  color: '#6604c2',
-                }}
+                size={25}
+                name="arrow-up-outline"
+                style={{ color: '#6604c2' }}
               />
             </View>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
-              Proteksi
+            <Text style={{ fontSize: 14, fontWeight: '500', color: '#6604c2' }}>
+              Transfer
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 20, marginTop: 3 }}>
-            <View>
-              <Image
-                source={More}
-                style={{ width: 30, height: 30, marginLeft: 8 }}
+          <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
+            <View style={styles.circle}>
+              <Icon
+                size={25}
+                name="timer-outline"
+                style={{ color: '#6604c2' }}
               />
             </View>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
-              Lainnya
+            <Text style={{ fontSize: 14, fontWeight: '500', color: '#6604c2' }}>
+              History
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
+        {/* Buying */}
+        <View style={styles.boxBuying}>
+          <View style={styles.row}>
+            <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
+              <View>
+                <Image source={Thunder} style={{ width: 30, height: 30 }} />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
+                PLN
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
+              <View>
+                <Image source={Phone} style={{ width: 30, height: 30 }} />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
+                Pulsa
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
+              <View>
+                <Image
+                  source={Console}
+                  style={{ width: 30, height: 30, marginLeft: 8 }}
+                />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
+                Games
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
+              <View>
+                <Image
+                  source={Invest}
+                  style={{ width: 30, height: 30, marginLeft: 8 }}
+                />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
+                Invest
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.row}>
+            <TouchableOpacity style={{ marginHorizontal: 25, marginTop: 3 }}>
+              <View>
+                <Icon
+                  name="newspaper"
+                  size={30}
+                  style={{ width: 30, height: 30, color: '#cc0000' }}
+                />
+              </View>
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontWeight: '500',
+                  color: '#222',
+                }}>
+                Kredit
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginHorizontal: 10, marginTop: 3 }}>
+              <View>
+                <Image
+                  source={Tv}
+                  style={{ width: 30, height: 30, marginLeft: 8 }}
+                />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
+                Internet
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginHorizontal: 28, marginTop: 3 }}>
+              <View>
+                <Icon
+                  name="umbrella"
+                  size={30}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    marginLeft: 10,
+                    color: '#6604c2',
+                  }}
+                />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
+                Proteksi
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{ marginHorizontal: 20, marginTop: 3 }}>
+              <View>
+                <Image
+                  source={More}
+                  style={{ width: 30, height: 30, marginLeft: 8 }}
+                />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#222' }}>
+                Lainnya
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        {/* Promo dan Info */}
+        <View style={styles.boxPromo}>
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#000' }}>
+              Info dan Promo Spesial
+            </Text>
+            <TouchableOpacity>
+              <Text
+                style={{ fontSize: 12, fontWeight: '500', color: '#18d7ea' }}>
+                Lihat semua
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <Image
+            source={Promo}
+            style={{ width: 350, height: 150, marginTop: 10 }}
+          />
+        </View>
+      </ScrollView>
     </>
   );
 };
@@ -284,5 +309,19 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     marginVertical: 5,
+  },
+  boxPromo: {
+    padding: 10,
+    backgroundColor: '#fff',
+    width: '90%',
+    height: 200,
+    shadowColor: '#222',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    marginTop: 15,
+    borderRadius: 15,
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
 });
