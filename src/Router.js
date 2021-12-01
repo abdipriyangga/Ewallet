@@ -12,6 +12,7 @@ import Profile from './screens/Profile';
 import Finance from './screens/Finance';
 import Notification from './screens/Notification';
 import Scan from './screens/Scan';
+import TopUp from './screens/TopUp';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -74,6 +75,11 @@ const Router = () => {
           <Stack.Screen
             name="Home"
             component={HomeTabs}
+            options={{ headerShown: false, tabBarBadge: 3 }}
+          />
+          <Stack.Screen
+            name="TopUp"
+            component={TopUp}
             options={{ headerShown: false, tabBarBadge: 3 }}
           />
         </>

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Console, Invest, More, Phone, Promo, Thunder, Tv } from '../assets';
-const Home = () => {
+const Home = props => {
   return (
     <>
       <View style={styles.header}>
@@ -51,7 +51,9 @@ const Home = () => {
         </View>
         {/* Fitur */}
         <View style={styles.boxFitur}>
-          <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('TopUp')}
+            style={{ marginHorizontal: 35, marginTop: 3 }}>
             <View style={styles.circle}>
               <Icon size={25} name="add-outline" style={{ color: '#6604c2' }} />
             </View>

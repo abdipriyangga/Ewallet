@@ -88,15 +88,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#fff',
   },
-  buttonLogin: {
-    marginLeft: 10,
-    width: 340,
-    height: 70,
-    backgroundColor: '#FFBA33',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   formInput: {
     padding: 10,
     width: 352,
