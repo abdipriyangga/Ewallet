@@ -13,6 +13,8 @@ import Finance from './screens/Finance';
 import Notification from './screens/Notification';
 import Scan from './screens/Scan';
 import TopUp from './screens/TopUp';
+import Transfer from './screens/Transfer';
+import TrxSame from './screens/TrxSame';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -80,6 +82,16 @@ const Router = () => {
           <Stack.Screen
             name="TopUp"
             component={TopUp}
+            options={{ headerShown: false, tabBarBadge: 3 }}
+          />
+          <Stack.Screen
+            name="Transfer"
+            component={Transfer}
+            options={{ headerShown: false, tabBarBadge: 3 }}
+          />
+          <Stack.Screen
+            name="TrxSame"
+            component={TrxSame}
             options={{ headerShown: false, tabBarBadge: 3 }}
           />
         </>

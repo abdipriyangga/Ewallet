@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Input from '../components/Input';
-const TopUp = () => {
+const TopUp = props => {
   return (
     <>
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Icon name="arrow-back" size={25} style={styles.icon} />
         </TouchableOpacity>
         <Text style={styles.textHead}>Top Up</Text>

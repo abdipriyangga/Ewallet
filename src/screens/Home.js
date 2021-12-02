@@ -61,7 +61,9 @@ const Home = props => {
               Top Up
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('Transfer')}
+            style={{ marginHorizontal: 35, marginTop: 3 }}>
             <View style={styles.circle}>
               <Icon
                 size={25}
