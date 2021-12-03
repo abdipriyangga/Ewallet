@@ -13,6 +13,7 @@ import { Console, Invest, More, Phone, Promo, Thunder, Tv } from '../assets';
 const Home = props => {
   return (
     <>
+      <StatusBar backgroundColor="#5d04b0" animated={true} />
       <View style={styles.header}>
         <Text style={styles.textHead}>ODO</Text>
         <TouchableOpacity>

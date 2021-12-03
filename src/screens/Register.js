@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,21 @@ import {
   ScrollView,
 } from 'react-native';
 import Input from '../components/Input';
-const Register = () => {
+import { useDispatch } from 'react-redux';
+import { Register as registerAction } from '../redux/actions/auth';
+const Register = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone_number, setPhoneNumber] = useState('');
+  const dispatch = useDispatch();
+  const form = {
+    email: email,
+    password: password,
+    phone_number: phone_number,
+  };
+  const onSubmit = () => {
+    dispatch(registerAction(form, navigation));
+  };
   return (
     <ScrollView vertical={true}>
       <View style={styles.container}>
@@ -16,23 +30,29 @@ const Register = () => {
         </View>
         <View style={styles.formInput}>
           <Input
+            value={email}
+            onChangeText={val => setEmail(val)}
             keyboardType="email-address"
             placeholder="enter your email address"
             variant="underlined"
           />
           <Input
+            value={password}
+            onChangeText={val => setPassword(val)}
             placeholder="enter your password"
             variant="underlined"
             color="#000"
             secureTextEntry
           />
           <Input
+            value={phone_number}
+            onChangeText={val => setPhoneNumber(val)}
             keyboardType="number-pad"
             placeholder="enter your phone number"
             variant="underlined"
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={onSubmit} style={styles.button}>
           <Text style={styles.textBtn}> Create Account </Text>
         </TouchableOpacity>
       </View>

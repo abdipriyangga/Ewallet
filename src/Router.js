@@ -15,6 +15,7 @@ import Scan from './screens/Scan';
 import TopUp from './screens/TopUp';
 import Transfer from './screens/Transfer';
 import TrxSame from './screens/TrxSame';
+import { useSelector } from 'react-redux';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -50,51 +51,57 @@ const HomeTabs = () => {
   );
 };
 const Router = () => {
+  const token = useSelector(state => state.auth.token);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="GetStarted">
-        <>
-          <Stack.Screen
-            name="GetStarted"
-            component={GetStarted}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-          <Stack.Screen
-            name="ChooseAuth"
-            component={ChooseAuth}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={Login}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-          <Stack.Screen
-            name="Register"
-            component={Register}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={HomeTabs}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-          <Stack.Screen
-            name="TopUp"
-            component={TopUp}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-          <Stack.Screen
-            name="Transfer"
-            component={Transfer}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-          <Stack.Screen
-            name="TrxSame"
-            component={TrxSame}
-            options={{ headerShown: false, tabBarBadge: 3 }}
-          />
-        </>
+        {token === null ? (
+          <>
+            <Stack.Screen
+              name="GetStarted"
+              component={GetStarted}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="ChooseAuth"
+              component={ChooseAuth}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+          </>
+        ) : (
+          <>
+            <Stack.Screen
+              name="Home"
+              component={HomeTabs}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="TopUp"
+              component={TopUp}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="Transfer"
+              component={Transfer}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="TrxSame"
+              component={TrxSame}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

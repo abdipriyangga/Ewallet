@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,7 +7,19 @@ import {
   ScrollView,
 } from 'react-native';
 import Input from '../components/Input';
+import { useDispatch } from 'react-redux';
+import { Login as loginAction } from '../redux/actions/auth';
 const Login = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+  const form = {
+    email: email,
+    password: password,
+  };
+  const onSubmit = () => {
+    dispatch(loginAction(form));
+  };
   return (
     <ScrollView vertical={true}>
       <View style={styles.container}>
@@ -26,20 +38,22 @@ const Login = ({ navigation }) => {
         </View>
         <View style={styles.formInput}>
           <Input
+            value={email}
+            onChangeText={value => setEmail(value)}
             keyboardType="email-address"
             placeholder="enter your email address"
             variant="underlined"
           />
           <Input
+            value={password}
+            onChangeText={value => setPassword(value)}
             placeholder="enter your password"
             variant="underlined"
             color="#000"
             secureTextEntry
           />
         </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Home')}
-          style={styles.button}>
+        <TouchableOpacity onPress={onSubmit} style={styles.button}>
           <Text style={styles.textBtn}>Login </Text>
         </TouchableOpacity>
       </View>
