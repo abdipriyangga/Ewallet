@@ -6,6 +6,7 @@ export const Register = (data, navigation) => {
   return async dispatch => {
     dispatch({ type: 'SET_REGISTER', payload: true });
     const form = new URLSearchParams();
+    form.append('name', data.name);
     form.append('email', data.email);
     form.append('password', data.password);
     form.append('phone_number', data.phone_number);

@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -6,10 +7,33 @@ import {
   TouchableOpacity,
   ScrollView,
   StatusBar,
+  ToastAndroid,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useDispatch, connect } from 'react-redux';
 import Input from '../components/Input';
+import { topup } from '../redux/actions/topup';
+import { getProfile } from '../redux/actions/profile';
+
 const TopUp = props => {
+  const { profile } = props.profile;
+  const [balance, setBalance] = useState('');
+  const data = {
+    topupBalance: balance,
+    transactionFee: 0,
+  };
+  const dispatch = useDispatch();
+  const { token } = props.auth;
+  useEffect(() => {
+    props.getProfile(token);
+  }, []);
+  const onSubmit = () => {
+    if (balance <= 10000) {
+      ToastAndroid.show('sorry minimum topup 10.000!', ToastAndroid.SHORT);
+    } else {
+      dispatch(topup(token, data, props.navigation));
+    }
+  };
   return (
     <>
       <View style={styles.header}>
@@ -26,7 +50,8 @@ const TopUp = props => {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ marginHorizontal: 60 }}>
-            <Text style={{ fontSize: 15, color: '#222', fontWeight: 'bold' }}>
+            <Text
+              style={{ fontSize: 15, color: '#eaeaea', fontWeight: 'bold' }}>
               Metode Lain
             </Text>
           </TouchableOpacity>
@@ -57,7 +82,7 @@ const TopUp = props => {
                 </View>
                 <View style={styles.row}>
                   <Text>Balance Rp.</Text>
-                  <Text>50000</Text>
+                  <Text>{profile.balance}</Text>
                 </View>
               </View>
             </View>
@@ -85,7 +110,12 @@ const TopUp = props => {
                 Atau masukkan nominal top up di sini
               </Text>
               <View style={{ marginTop: -10 }}>
-                <Input placeholder="Minimal Rp.10.000" />
+                <Input
+                  keyboardType="number-pad"
+                  placeholder="Minimal Rp.10.000"
+                  value={balance}
+                  onChangeText={val => setBalance(val)}
+                />
               </View>
             </View>
           </View>
@@ -128,7 +158,7 @@ const TopUp = props => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.btnTopup}>
+          <TouchableOpacity onPress={onSubmit} style={styles.btnTopup}>
             <Text style={styles.textBtn}>Top Up Sekarang</Text>
           </TouchableOpacity>
         </View>
@@ -136,8 +166,16 @@ const TopUp = props => {
     </>
   );
 };
-
-export default TopUp;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile,
+  topup: state.topup,
+});
+const mapDispatchToProps = {
+  getProfile,
+  topup,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TopUp);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

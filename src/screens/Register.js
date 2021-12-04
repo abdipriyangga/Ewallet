@@ -5,16 +5,22 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import Input from '../components/Input';
 import { useDispatch } from 'react-redux';
 import { Register as registerAction } from '../redux/actions/auth';
 const Register = ({ navigation }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone_number, setPhoneNumber] = useState('');
   const dispatch = useDispatch();
   const form = {
+    name: name,
     email: email,
     password: password,
     phone_number: phone_number,
@@ -28,30 +34,39 @@ const Register = ({ navigation }) => {
         <View style={styles.wrapText}>
           <Text style={styles.textHead}> Register </Text>
         </View>
-        <View style={styles.formInput}>
-          <Input
-            value={email}
-            onChangeText={val => setEmail(val)}
-            keyboardType="email-address"
-            placeholder="enter your email address"
-            variant="underlined"
-          />
-          <Input
-            value={password}
-            onChangeText={val => setPassword(val)}
-            placeholder="enter your password"
-            variant="underlined"
-            color="#000"
-            secureTextEntry
-          />
-          <Input
-            value={phone_number}
-            onChangeText={val => setPhoneNumber(val)}
-            keyboardType="number-pad"
-            placeholder="enter your phone number"
-            variant="underlined"
-          />
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.formInput}>
+            <Input
+              value={name}
+              onChangeText={val => setName(val)}
+              keyboardType="default"
+              placeholder="enter your fullname"
+              variant="underlined"
+            />
+            <Input
+              value={email}
+              onChangeText={val => setEmail(val)}
+              keyboardType="email-address"
+              placeholder="enter your email address"
+              variant="underlined"
+            />
+            <Input
+              value={password}
+              onChangeText={val => setPassword(val)}
+              placeholder="enter your password"
+              variant="underlined"
+              color="#000"
+              secureTextEntry
+            />
+            <Input
+              value={phone_number}
+              onChangeText={val => setPhoneNumber(val)}
+              keyboardType="number-pad"
+              placeholder="enter your phone number"
+              variant="underlined"
+            />
+          </View>
+        </TouchableWithoutFeedback>
         <TouchableOpacity onPress={onSubmit} style={styles.button}>
           <Text style={styles.textBtn}> Create Account </Text>
         </TouchableOpacity>
@@ -86,7 +101,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    top: 20,
+    top: 0,
     marginHorizontal: '3%',
     width: 340,
     height: 80,
@@ -94,21 +109,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 40,
+    marginVertical: 0,
   },
   textBtn: {
     fontFamily: 'Poppins-Bold',
     fontSize: 20,
     color: '#fff',
-  },
-  buttonLogin: {
-    marginLeft: 10,
-    width: 340,
-    height: 70,
-    backgroundColor: '#FFBA33',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   formInput: {
     padding: 10,
