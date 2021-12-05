@@ -19,7 +19,7 @@ const TopUp = props => {
   const { profile } = props.profile;
   const [balance, setBalance] = useState('');
   const data = {
-    topupBalance: balance,
+    balance: balance,
     transactionFee: 0,
   };
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const TopUp = props => {
     if (balance <= 10000) {
       ToastAndroid.show('sorry minimum topup 10.000!', ToastAndroid.SHORT);
     } else {
-      dispatch(topup(token, data, props.navigation));
+      dispatch(topup(data, token, props.navigation));
     }
   };
   return (

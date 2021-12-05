@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,7 +11,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Console, Invest, More, Phone, Promo, Thunder, Tv } from '../assets';
+import { useDispatch, connect } from 'react-redux';
+import { getProfile } from '../redux/actions/profile';
 const Home = props => {
+  const { profile } = props.profile;
+  useEffect(() => {
+    props.getProfile(props.auth.token);
+  }, []);
   return (
     <>
       <StatusBar backgroundColor="#5d04b0" animated={true} />
@@ -34,7 +41,7 @@ const Home = props => {
                 fontWeight: '700',
                 marginLeft: 3,
               }}>
-              50000
+              {profile.balance}
             </Text>
           </View>
           <View style={styles.balance}>
@@ -213,8 +220,14 @@ const Home = props => {
     </>
   );
 };
-
-export default Home;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile,
+});
+const mapDispatchToProps = {
+  getProfile,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

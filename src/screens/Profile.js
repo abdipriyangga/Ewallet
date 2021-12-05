@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -13,7 +14,13 @@ import FaIcon from 'react-native-vector-icons/FontAwesome5';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 import { authLogout } from '../redux/actions/auth';
+import { getProfile } from '../redux/actions/profile';
+import { API_URL } from '@env';
 const Profile = props => {
+  const { profile } = props.profile;
+  useEffect(() => {
+    props.getProfile(props.auth.token);
+  }, []);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -26,13 +33,20 @@ const Profile = props => {
           <View style={{ marginTop: 30 }}>
             {/* Info Profile */}
             <View style={{ flexDirection: 'row' }}>
-              <Image source={DefaultUser} style={styles.imageProfile} />
+              <Image
+                source={
+                  profile.images === null || profile.images === `${API_URL}`
+                    ? DefaultUser
+                    : { uri: profile.images }
+                }
+                style={styles.imageProfile}
+              />
               <View style={{ marginHorizontal: 20 }}>
                 <Text style={{ color: '#000', fontWeight: 'bold' }}>
-                  Your name
+                  {profile.name}
                 </Text>
                 <Text style={{ fontWeight: '400', marginTop: 5 }}>
-                  Phone Number
+                  {profile.phone_number}
                 </Text>
               </View>
             </View>
@@ -191,6 +205,7 @@ const Profile = props => {
           <View style={{ marginTop: 30 }}>
             {/* Info Profile */}
             <TouchableOpacity
+              onPress={() => props.navigation.navigate('EditProfile')}
               style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <View style={{ flexDirection: 'row', marginVertical: 0 }}>
                 <FaIcon
@@ -494,6 +509,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {
   authLogout,
+  getProfile,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 const styles = StyleSheet.create({

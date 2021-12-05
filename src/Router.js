@@ -16,6 +16,7 @@ import TopUp from './screens/TopUp';
 import Transfer from './screens/Transfer';
 import TrxSame from './screens/TrxSame';
 import { useSelector } from 'react-redux';
+import EditProfile from './screens/EditProfile';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -98,6 +99,11 @@ const Router = () => {
             <Stack.Screen
               name="TrxSame"
               component={TrxSame}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfile}
               options={{ headerShown: false, tabBarBadge: 3 }}
             />
           </>
