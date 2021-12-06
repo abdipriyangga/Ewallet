@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "94507005974",
+    "project_id": "odo-wallet",
+    "storage_bucket": "odo-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:94507005974:android:280a4b2d8b09389c685d37",
+        "android_client_info": {
+          "package_name": "com.walletrn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "94507005974-bp9ohncafeo3li59nqg6lso3n6eqblqd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfvf0KL5w_2Ng43Nyvc-DKqIq6-C9cWHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "94507005974-bp9ohncafeo3li59nqg6lso3n6eqblqd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

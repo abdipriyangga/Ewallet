@@ -17,6 +17,11 @@ const auth = (state = initStateAuth, action) => {
         token: null,
       };
     }
+    case 'REGISTER_TOKEN':
+      return {
+        ...state,
+        notifToken: action.payload,
+      };
     default:
       return state;
   }

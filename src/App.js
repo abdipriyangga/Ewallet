@@ -12,7 +12,20 @@ import Router from './Router';
 import { Provider } from 'react-redux';
 import reduxConfig from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import PushNotification from 'react-native-push-notification';
 const redux = reduxConfig();
+
+PushNotification.configure({
+  onRegister: function (token) {
+    console.log('TOKEN:', token);
+    redux.store.dispatch({ type: 'REGISTER_TOKEN', payload: token });
+  },
+});
+
+PushNotification.createChannel({
+  channelId: 'general',
+  channelName: 'general notification',
+});
 const App = () => {
   return (
     <>
