@@ -18,6 +18,8 @@ import TrxSame from './screens/TrxSame';
 import { useSelector } from 'react-redux';
 import EditProfile from './screens/EditProfile';
 import EditPassword from './screens/EditPassword';
+import SplashScreen from './screens/SplashScreen';
+import History from './screens/History';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -56,9 +58,14 @@ const Router = () => {
   const token = useSelector(state => state.auth.token);
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="GetStarted">
+      <Stack.Navigator initialRouteName="SplashScreen">
         {token === null ? (
           <>
+            <Stack.Screen
+              name="SplashScreen"
+              component={SplashScreen}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
             <Stack.Screen
               name="GetStarted"
               component={GetStarted}
@@ -110,6 +117,11 @@ const Router = () => {
             <Stack.Screen
               name="EditPassword"
               component={EditPassword}
+              options={{ headerShown: false, tabBarBadge: 3 }}
+            />
+            <Stack.Screen
+              name="History"
+              component={History}
               options={{ headerShown: false, tabBarBadge: 3 }}
             />
           </>

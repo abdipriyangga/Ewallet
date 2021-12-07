@@ -88,7 +88,9 @@ const Home = props => {
               Transfer
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginHorizontal: 35, marginTop: 3 }}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate('History')}
+            style={{ marginHorizontal: 35, marginTop: 3 }}>
             <View style={styles.circle}>
               <Icon
                 size={25}
