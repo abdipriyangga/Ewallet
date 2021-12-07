@@ -8,6 +8,7 @@ import {
   StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 const Transfer = props => {
   return (
     <>

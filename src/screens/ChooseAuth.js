@@ -6,7 +6,9 @@ import {
   TouchableOpacity,
   ScrollView,
   StatusBar,
+  Dimensions,
 } from 'react-native';
+const windowHeight = Dimensions.get('screen').height;
 const ChooseAuth = ({ navigation }) => {
   return (
     <ScrollView vertical={true}>
@@ -15,18 +17,20 @@ const ChooseAuth = ({ navigation }) => {
         <View style={{ marginTop: '10%' }}>
           <Text style={styles.textHead}> ODO </Text>
         </View>
-        <View style={{ alignItems: 'center', marginTop: '65%' }}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.textBtn}>Login</Text>
-          </TouchableOpacity>
-          <Text style={{ color: '#fff', fontSize: 16 }}>Atau</Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('Register')}>
-            <Text style={styles.textBtn}>Register</Text>
-          </TouchableOpacity>
+        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <View style={{ alignItems: 'center' }}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.textBtn}>Login</Text>
+            </TouchableOpacity>
+            <Text style={{ color: '#fff', fontSize: 16 }}>Atau</Text>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('Register')}>
+              <Text style={styles.textBtn}>Register</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -37,6 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#5d04b0',
+    height: windowHeight,
   },
   textHead: {
     fontFamily: 'Poppins-Bold',

@@ -74,3 +74,24 @@ export const updateProfile = (
     }
   };
 };
+
+export const changePassword = (token, data, navigation) => {
+  return async dispatch => {
+    const form = new URLSearchParams();
+    form.append('old_password', data.oldPassword);
+    form.append('password', data.newPassword);
+    try {
+      dispatch({ type: 'SET_CHANGE_PASSWORD', payload: true });
+      const { data } = await http(token).patch(
+        `${API_URL}/user/editPassword`,
+        form,
+      );
+      dispatch(getProfile(token));
+      dispatch({ type: 'SET_CHANGE_PASSWORD_SUCCESS', payload: false });
+      ToastAndroid.show('Change password success!', ToastAndroid.SHORT);
+    } catch (error) {
+      dispatch({ type: 'SET_CHANGE_PASSWORD_FAILED', payload: false });
+      ToastAndroid.show(error.response.data.message, ToastAndroid.SHORT);
+    }
+  };
+};

@@ -1,23 +1,46 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  StatusBar,
   KeyboardAvoidingView,
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  ToastAndroid,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import FaIcon from 'react-native-vector-icons/FontAwesome5';
 import InputTrx from '../components/InputTrx';
 import { TextInput } from 'react-native-gesture-handler';
+import { transfer } from '../redux/actions/transfer';
+import { getProfile } from '../redux/actions/profile';
+import { useDispatch, connect } from 'react-redux';
 const TrxSame = props => {
-  const [value, setValue] = useState('Rp0');
   const [isFocused, setIsFocused] = useState(false);
+  const { profile } = props.profile;
+  const [balance, setBalance] = useState('');
+  const [phone, setPhone] = useState('');
+  const data = {
+    phone: phone,
+    balance: balance,
+    transactionFee: 0,
+  };
+  const dispatch = useDispatch();
+  const { token } = props.auth;
+  useEffect(() => {
+    props.getProfile(token);
+  }, []);
+  const onSubmit = () => {
+    if (balance > profile.balance) {
+      ToastAndroid.show('Sorry your money is not enough!', ToastAndroid.SHORT);
+    } else {
+      dispatch(transfer(data, token, props.navigation));
+    }
+  };
   return (
     <View style={{ backgroundColor: '#fff', height: '100%' }}>
       {/* Header */}
@@ -30,7 +53,11 @@ const TrxSame = props => {
       <ScrollView>
         {/* Input Phone number */}
         <View style={{ flexDirection: 'row', width: '90%', padding: 10 }}>
-          <InputTrx placeholder="Masukkan nama atau nomor ponsel" />
+          <InputTrx
+            value={phone}
+            onChangeText={val => setPhone(val)}
+            placeholder="Masukkan nomor ponsel penerima"
+          />
           <View
             style={{
               padding: 10,
@@ -71,7 +98,7 @@ const TrxSame = props => {
               </View>
               <View style={styles.row}>
                 <Text>Balance Rp.</Text>
-                <Text>50000</Text>
+                <Text>{profile.balance}</Text>
               </View>
             </View>
           </View>
@@ -93,10 +120,10 @@ const TrxSame = props => {
           <View style={{ marginHorizontal: 5, marginTop: -15 }}>
             <TextInput
               keyboardType="number-pad"
-              value={value}
+              value={balance}
               keyboardAppearance="light"
               style={{ color: '#222', fontSize: 22 }}
-              onChangeText={val => setValue(val)}
+              onChangeText={val => setBalance(val)}
             />
           </View>
         </View>
@@ -129,7 +156,7 @@ const TrxSame = props => {
           </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
         <View>
-          <TouchableOpacity style={styles.btnTransfer}>
+          <TouchableOpacity onPress={onSubmit} style={styles.btnTransfer}>
             <Text style={styles.textBtn}>Transfer</Text>
           </TouchableOpacity>
         </View>
@@ -137,8 +164,16 @@ const TrxSame = props => {
     </View>
   );
 };
-
-export default TrxSame;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  profile: state.profile,
+  transfer: state.transfer,
+});
+const mapDispatchToProps = {
+  getProfile,
+  transfer,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TrxSame);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -58,3 +58,16 @@ export const authLogout = () => {
     dispatch({ type: 'CLEAR_CHAT' });
   };
 };
+
+export const registerToken = (authToken, notifToken) => {
+  return async dispatch => {
+    const form = new URLSearchParams({ token: notifToken });
+    if (authToken) {
+      const { data } = await http(authToken).post(
+        `${API_URL}/auth/registerToken`,
+        form,
+      );
+    }
+    dispatch({ type: 'AUTH_REGISTER_TOKEN', payload: notifToken });
+  };
+};

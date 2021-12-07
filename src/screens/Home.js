@@ -13,10 +13,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Console, Invest, More, Phone, Promo, Thunder, Tv } from '../assets';
 import { useDispatch, connect } from 'react-redux';
 import { getProfile } from '../redux/actions/profile';
+import { registerToken } from '../redux/actions/auth';
+
 const Home = props => {
   const { profile } = props.profile;
+  const { token, notifToken } = props.auth;
+  const dispatch = useDispatch();
   useEffect(() => {
-    props.getProfile(props.auth.token);
+    props.getProfile(token);
+    dispatch(registerToken(token, notifToken.token));
   }, []);
   return (
     <>
@@ -226,6 +231,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {
   getProfile,
+  registerToken,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 const styles = StyleSheet.create({

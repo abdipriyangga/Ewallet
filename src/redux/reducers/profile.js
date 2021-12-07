@@ -5,6 +5,8 @@ const initStateProfile = {
   isUpload: false,
   profile: {},
   data: {},
+  errMsg: '',
+  sccMsg: '',
 };
 
 const profile = (state = initStateProfile, action) => {
@@ -30,6 +32,23 @@ const profile = (state = initStateProfile, action) => {
       return {
         ...state,
         data: action.payload,
+      };
+    case 'SET_CHANGE_PASSWORD':
+      return {
+        ...state,
+        data: action.payload,
+      };
+    case 'SET_CHANGE_PASSWORD_FAILED':
+      return {
+        ...state,
+        errMsg: action.payload,
+        sccMsg: '',
+      };
+    case 'SET_CHANGE_PASSWORD_SUCCESS':
+      return {
+        ...state,
+        sccMsg: action.payload,
+        errMsg: '',
       };
     default:
       return {

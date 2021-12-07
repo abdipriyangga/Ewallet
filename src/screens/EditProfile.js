@@ -111,7 +111,7 @@ const EditProfile = props => {
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Icon name="arrow-back" size={25} style={styles.icon} />
         </TouchableOpacity>
-        <Text style={styles.textHead}>Top Up</Text>
+        <Text style={styles.textHead}>Edit Profile</Text>
       </View>
       <ScrollView>
         {/* Foto Profile */}

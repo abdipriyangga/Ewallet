@@ -303,6 +303,7 @@ const Profile = props => {
           <View style={{ marginTop: 30 }}>
             {/* Info Profile */}
             <TouchableOpacity
+              onPress={() => props.navigation.navigate('EditPassword')}
               style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
               <View style={{ flexDirection: 'row', marginVertical: 0 }}>
                 <FaIcon

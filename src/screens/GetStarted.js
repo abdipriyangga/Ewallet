@@ -6,40 +6,48 @@ import {
   TouchableOpacity,
   ScrollView,
   StatusBar,
+  Dimensions,
 } from 'react-native';
+const windowHeight = Dimensions.get('screen').height;
 const GetStarted = ({ navigation }) => {
   return (
     <ScrollView vertical={true}>
       <StatusBar backgroundColor="#5d04b0" animated={true} />
       <View style={styles.container}>
-        <View style={{ marginTop: '10%' }}>
+        <View style={{ marginTop: '5%' }}>
           <Text style={styles.textHead}> ODO </Text>
         </View>
-        <View style={{ alignItems: 'center', marginTop: '85%' }}>
-          <View
-            style={{
-              width: '80%',
-              alignItems: 'center',
-            }}>
-            <Text style={{ fontSize: 22, color: '#fff', fontWeight: '900' }}>
-              Solusi Cerdas Finansial
-            </Text>
-            <Text
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+          }}>
+          <View style={{ alignItems: 'center' }}>
+            <View
               style={{
-                fontSize: 14,
-                color: '#fff',
-                fontWeight: '400',
-                textAlign: 'center',
+                width: '80%',
+                alignItems: 'center',
               }}>
-              Nikmati berbagai layanan finansial dan kemudahan pembayaran dalam
-              genggaman
-            </Text>
+              <Text style={{ fontSize: 22, color: '#fff', fontWeight: '900' }}>
+                Solusi Cerdas Finansial
+              </Text>
+              <Text
+                style={{
+                  fontSize: 14,
+                  color: '#fff',
+                  fontWeight: '400',
+                  textAlign: 'center',
+                }}>
+                Nikmati berbagai layanan finansial dan kemudahan pembayaran
+                dalam genggaman
+              </Text>
+            </View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('ChooseAuth')}>
+              <Text style={styles.textBtn}>Lanjutkan</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => navigation.navigate('ChooseAuth')}>
-            <Text style={styles.textBtn}>Lanjutkan</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -50,6 +58,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#5d04b0',
+    height: windowHeight,
   },
   textHead: {
     fontFamily: 'Poppins-Bold',
