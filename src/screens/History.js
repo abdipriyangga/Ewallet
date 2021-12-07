@@ -1,14 +1,26 @@
-import React from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  ToastAndroid,
+  LogBox,
+  FlatList,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { getHistory } from '../redux/actions/history';
 import Icon from 'react-native-vector-icons/Ionicons';
 const History = props => {
+  const { history } = props.history;
+  console.log('HISTORY DATA: ', history.createdAt);
+  useEffect(() => {
+    props.getHistory(props.auth.token);
+    console.log('tooken from useEffect: ', props.auth.token);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   return (
     <>
       <View style={styles.header}>
@@ -18,13 +30,70 @@ const History = props => {
         <Text style={styles.textHead}>History</Text>
       </View>
       <ScrollView>
-        <View />
+        {history < 1 || undefined ? (
+          <>
+            <View>
+              <Text>You dont have history</Text>
+            </View>
+          </>
+        ) : (
+          <>
+            <FlatList
+              data={history}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => {
+                let dtNow = new Date(item.createdAt);
+                const fixDate = `${dtNow.getDate()}-${dtNow.getMonth() + 1}-${dtNow.getFullYear()}`;
+                return (
+                  <>
+                    <View style={{ marginVertical: 8, backgroundColor: '#eee' }}>
+                      <View style={{ marginVertical: 10, marginHorizontal: 15 }}>
+                        <Text>{fixDate}</Text>
+                      </View>
+                      <View style={{ backgroundColor: '#ffff', padding: 5 }}>
+                        <Text style={styles.textTitle}>{item.description}</Text>
+                        <View style={{ flexDirection: 'row' }}>
+                          <Text style={styles.textSubTitle}>
+                            {item.description}
+                          </Text>
+                          <View
+                            style={{
+                              flex: 1,
+                              flexDirection: 'row',
+                              justifyContent: 'flex-end',
+                              marginVertical: 8,
+                            }}>
+                            <Text style={{ color: '#32f006', fontWeight: '800' }}>
+                              Rp.
+                            </Text>
+                            <Text style={{ color: '#32f006', fontWeight: '800' }}>
+                              {item.description === 'Top Up Balance to Account'
+                                ? item.topupBalance
+                                : item.deductedBalance}
+                            </Text>
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                  </>
+                );
+              }}
+            />
+          </>
+        )}
       </ScrollView>
     </>
   );
 };
-
-export default History;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  transaction: state.transaction,
+  history: state.history,
+});
+const mapDispatchToProps = {
+  getHistory,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(History);
 const styles = StyleSheet.create({
   header: {
     backgroundColor: '#6604c2',
@@ -48,6 +117,21 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginTop: 8,
     marginLeft: 30,
+  },
+  textTitle: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#000',
+    marginTop: 0,
+    marginLeft: 15,
+  },
+  textSubTitle: {
+    fontFamily: 'Poppins-Bold',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginVertical: 8,
+    marginLeft: 15,
   },
   textBtn: {
     fontFamily: 'Poppins-Bold',

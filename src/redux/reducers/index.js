@@ -4,6 +4,7 @@ import auth from './auth';
 import profile from './profile';
 import topup from './topup';
 import transfer from './transfer';
+import history from './history';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const persistAuth = {
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   profile,
   topup,
   transfer,
+  history,
 });
 
 export default reducers;
