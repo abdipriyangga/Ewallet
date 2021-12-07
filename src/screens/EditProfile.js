@@ -44,6 +44,7 @@ const EditProfile = props => {
             ToastAndroid.show('You dont choose any image!', ToastAndroid.SHORT);
           } else {
             setImage({ uri: response.assets[0].uri });
+            console.log('IMAGES', setImage);
             const dataImage = {
               uri: response.assets[0].uri,
               type: response.assets[0].type,
@@ -61,11 +62,11 @@ const EditProfile = props => {
           if (response.didCancel) {
             ToastAndroid.show('You dont choose any image!', ToastAndroid.SHORT);
           } else {
-            setImage({ uri: response.assets.uri });
+            setImage({ uri: response?.assets?.uri });
             const dataImage = {
-              uri: response.assets.uri,
-              type: response.assets.type,
-              name: response.assets.fileName,
+              uri: response?.assets?.uri,
+              type: response?.assets?.type,
+              name: response?.assets?.fileName,
             };
             dispatch({ type: 'SET_IMAGE', payload: dataImage });
             dispatch({ type: 'SET_UPLOAD_STATUS', payload: true });
@@ -77,7 +78,7 @@ const EditProfile = props => {
   // console.log('IMAGE: ', images.uri);
   const onSubmit = () => {
     dispatch(
-      updateProfile(name, email, phone, images.uri, token, props.navigation),
+      updateProfile(name, email, phone, props.profile, token, props.navigation),
     );
   };
   return (
